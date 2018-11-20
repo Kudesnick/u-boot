@@ -342,7 +342,6 @@ static void acpi_create_spcr(struct acpi_spcr *spcr)
 	struct acpi_table_header *header = &(spcr->header);
 	struct serial_device_info serial_info = {0};
 	ulong serial_address, serial_offset;
-	uint serial_config;
 	uint serial_width;
 	int access_size;
 	int space_id;
@@ -412,31 +411,8 @@ static void acpi_create_spcr(struct acpi_spcr *spcr)
 	spcr->serial_port.addrl = lower_32_bits(serial_address);
 	spcr->serial_port.addrh = upper_32_bits(serial_address);
 
-	/* Encode baud rate */
-	switch (serial_info.baudrate) {
-	case 9600:
-		spcr->baud_rate = 3;
-		break;
-	case 19200:
-		spcr->baud_rate = 4;
-		break;
-	case 57600:
-		spcr->baud_rate = 6;
-		break;
-	case 115200:
-		spcr->baud_rate = 7;
-		break;
-	default:
-		spcr->baud_rate = 0;
-		break;
-	}
-
-	ret = serial_getconfig(&serial_config);
-	if (ret)
-		serial_config = SERIAL_DEFAULT_CONFIG;
-
-	spcr->parity = SERIAL_GET_PARITY(serial_config);
-	spcr->stop_bits = SERIAL_GET_STOP(serial_config);
+	/* Let OS know that console already had been initialized */
+	spcr->baud_rate = 0;
 
 	/* No PCI devices for now */
 	spcr->pci_device_id = 0xffff;
