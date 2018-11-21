@@ -189,6 +189,9 @@ Device (PCI0)
                 "\\_SB.PCI0.GPIO", 0, ResourceConsumer, , ) { 112 }
             GpioIo(Exclusive, PullUp, 0, 0, IoRestrictionOutputOnly,
                 "\\_SB.PCI0.GPIO", 0, ResourceConsumer, , ) { 113 }
+
+            FixedDMA(0x000d, 0x0002, Width32bit, )
+            FixedDMA(0x000c, 0x0003, Width32bit, )
         })
 
         Method (_CRS, 0, NotSerialized)
@@ -204,6 +207,7 @@ Device (PCI0)
         Name (_DSD, Package () {
             ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
             Package () {
+                Package () { "dma-burst-sz", 8 },
                 Package () {
                     "cs-gpios", Package () {
                         ^SPI5, 0, 0, 0,
