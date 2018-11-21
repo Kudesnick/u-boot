@@ -137,7 +137,6 @@ enum adr_space_type {
  * @reg_width:	size (in bytes) of the IO accesses to the registers
  * @reg_offset:	offset to apply to the @addr from the start of the registers
  * @reg_shift:	quantity to shift the register offsets by
- * @baudrate:	baud rate
  */
 struct serial_device_info {
 	enum serial_chip_type type;
@@ -146,7 +145,6 @@ struct serial_device_info {
 	u8 reg_width;
 	u8 reg_offset;
 	u8 reg_shift;
-	unsigned int baudrate;
 };
 
 #define SERIAL_DEFAULT_ADDRESS	0xBADACCE5
