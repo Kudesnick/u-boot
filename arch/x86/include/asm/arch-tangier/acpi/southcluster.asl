@@ -416,6 +416,30 @@ Device (PCI0)
             }
         }
     }
+
+    Device (GDMA)
+    {
+        Name (_ADR, 0x00150000)
+
+        Method (_STA, 0, NotSerialized)
+        {
+            Return (STA_VISIBLE)
+        }
+
+	/*
+	 * See Documentation/devicetree/bindings/dma/snps-dma.txt
+	 * for more information about these bindings.
+	 */
+        Name (_DSD, Package () {
+            ToUUID("daffd814-6eba-4d8c-8a91-bc9bbf4aa301"),
+            Package () {
+                Package () { "dma-channels", 8 },
+                Package () { "dma-masters", 1 },
+                Package () { "block_size", 131071 },
+                Package () { "data-width", Package () { 4 } },
+            }
+        })
+    }
 }
 
 Device (FLIS)
