@@ -450,8 +450,8 @@ Device (PCI0)
             Package () {
                 Package () { "dma-channels", 8 },
                 Package () { "dma-masters", 1 },
-                Package () { "block_size", 131071 },
-                Package () { "data-width", Package () { 4 } },
+                Package () { "snps,block-size", 131071 },
+                Package () { "snps,data-width", Package () { 4 } },
             }
         })
     }
