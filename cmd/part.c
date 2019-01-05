@@ -1,4 +1,3 @@
-// SPDX-License-Identifier: GPL-2.0+
 /*
  * Copyright (c) 2012, NVIDIA CORPORATION.  All rights reserved.
  *
@@ -13,6 +12,8 @@
  * (C) Copyright 2003 - 2004
  * Sysgo Real-Time Solutions, AG <www.elinos.com>
  * Pavel Bartusek <pba@sysgo.com>
+ *
+ * SPDX-License-Identifier:	GPL-2.0+
  */
 
 #include <common.h>
@@ -20,6 +21,11 @@
 #include <command.h>
 #include <part.h>
 #include <vsprintf.h>
+
+#ifndef CONFIG_PARTITION_UUIDS
+#error CONFIG_PARTITION_UUIDS must be enabled for CONFIG_CMD_PART to be enabled
+#endif
+
 
 enum cmd_part_info {
 	CMD_PART_INFO_START = 0,
