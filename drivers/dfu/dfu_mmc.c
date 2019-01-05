@@ -337,7 +337,7 @@ int dfu_fill_entity_mmc(struct dfu_entity *dfu, char *devstr, char *s)
 	}
 
 	dfu->data.mmc.hw_partition = -EINVAL;
-	if (!strcmp(entity_type, "raw")) {
+	if (!strcmp(entity_type, "raw") || !strcmp(entity_type, "mmc")) {
 		dfu->layout			= DFU_RAW_ADDR;
 		dfu->data.mmc.lba_start		= second_arg;
 		dfu->data.mmc.lba_size		= third_arg;
@@ -378,7 +378,7 @@ int dfu_fill_entity_mmc(struct dfu_entity *dfu, char *devstr, char *s)
 	}
 
 	/* if it's NOT a raw write */
-	if (strcmp(entity_type, "raw")) {
+	if (strcmp(entity_type, "raw") && strcmp(entity_type, "mmc")) {
 		dfu->data.mmc.dev = second_arg;
 		dfu->data.mmc.part = third_arg;
 	}

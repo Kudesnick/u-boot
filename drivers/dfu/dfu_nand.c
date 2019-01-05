@@ -196,7 +196,7 @@ int dfu_fill_entity_nand(struct dfu_entity *dfu, char *devstr, char *s)
 	dfu->data.nand.ubi = 0;
 	dfu->dev_type = DFU_DEV_NAND;
 	st = strsep(&s, " ");
-	if (!strcmp(st, "raw")) {
+	if (!strcmp(st, "raw") || !strcmp(st, "mmc")) {
 		dfu->layout = DFU_RAW_ADDR;
 		dfu->data.nand.start = simple_strtoul(s, &s, 16);
 		s++;

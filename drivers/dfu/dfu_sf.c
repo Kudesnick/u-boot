@@ -128,7 +128,7 @@ int dfu_fill_entity_sf(struct dfu_entity *dfu, char *devstr, char *s)
 	dfu->max_buf_size = dfu->data.sf.dev->sector_size;
 
 	st = strsep(&s, " ");
-	if (!strcmp(st, "raw")) {
+	if (!strcmp(st, "raw") || !strcmp(st, "mmc")) {
 		dfu->layout = DFU_RAW_ADDR;
 		dfu->data.sf.start = simple_strtoul(s, &s, 16);
 		s++;
